@@ -1,16 +1,10 @@
 "use client";
 
-import {
-  Alert,
-  Button,
-  Container,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { FormEvent, useState } from "react";
-import { z } from "zod";
+import { Alert, Container, Stack } from "@mui/material";
+import { useState } from "react";
 import { useGetUsersList } from "../../../../libs/api/hooks/useGetUsersList";
+import { UserSearchForm } from "../../components/UserSearchForm";
+import { UserSearchItem } from "../UserItemContainer";
 
 export const GithubUser = () => {
   const [search, setUsername] = useState("");
@@ -22,54 +16,20 @@ export const GithubUser = () => {
 
   const isLoading = doGetUsersList.isLoading;
 
-  const handleSubmitsearch = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-
-    const validation = z.string().safeParse(formData.get("username"));
-    if (!validation.success) {
-      alert(validation.error.issues[0].message);
-      return;
-    }
-    setUsername(validation.data);
-  };
+  const resultCaption = `${totalCount} results for ${search}`;
 
   return (
     <Container sx={{ height: "100vh" }}>
-      <Stack width={540} maxWidth={1} mx="auto">
-        <Stack
-          gap={2}
-          component="form"
-          onSubmit={handleSubmitsearch}
-          position="sticky"
-          top={0}
-          bgcolor="white"
-          zIndex={1}
-          pt={2}
-        >
-          <TextField
-            label="username"
-            name="username"
-            error={!!doGetUsersList.error}
-            helperText={
-              isLoading ? "Loading..." : doGetUsersList.error?.message
-            }
-          />
-          <Button variant="contained" type="submit" disabled={isLoading}>
-            Search
-          </Button>
-        </Stack>
+      <Stack width={540} maxWidth={1} mx="auto" gap={2}>
+        <UserSearchForm
+          isLoading={isLoading}
+          onSubmit={setUsername}
+          errorMessage={doGetUsersList.error?.message}
+        />
+        {!!search && <Alert>{resultCaption}</Alert>}
         <Stack>
-          {!!search && (
-            <Alert>
-              {totalCount} results for&nbsp;
-              <Typography component="span" fontWeight={600}>
-                {search}
-              </Typography>
-            </Alert>
-          )}
           {usersList?.map((user) => (
-            <Typography key={user.id}>{user.login}</Typography>
+            <UserSearchItem key={user.id} user={user} />
           ))}
         </Stack>
       </Stack>
