@@ -14,8 +14,9 @@ export interface IGithubRepo {
   id: number;
   node_id: string;
   name: string;
-
+  description: string;
   owner: IGithubUser;
+  stargazers_count: number;
 }
 
 export interface IUsersListResponse {
