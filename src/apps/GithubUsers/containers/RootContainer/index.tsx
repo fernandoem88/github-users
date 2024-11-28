@@ -4,7 +4,7 @@ import { Alert, Container, Stack } from "@mui/material";
 import { useState } from "react";
 import { useGetUsersList } from "../../../../libs/api/hooks/useGetUsersList";
 import { UserSearchForm } from "../../components/UserSearchForm";
-import { UserSearchItem } from "../UserItemContainer";
+import { UserItemContainer } from "../UserItemContainer";
 import { InViewLoader } from "../../components/InViewLoader";
 
 export const GithubUser = () => {
@@ -35,9 +35,9 @@ export const GithubUser = () => {
           errorMessage={doGetUsersList.error?.message}
         />
         {!!search && <Alert>{resultCaption}</Alert>}
-        <Stack px={2}>
+        <Stack px={2} component="ul" gap="1px">
           {usersList?.map((user) => (
-            <UserSearchItem key={user.id} user={user} />
+            <UserItemContainer key={user.id} user={user} />
           ))}
         </Stack>
         <InViewLoader
