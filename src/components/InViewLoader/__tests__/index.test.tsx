@@ -23,10 +23,12 @@ describe("InViewLoader", () => {
     const anchorRef = () => {};
     const isInView = true;
 
-    useInViewMock.mockImplementation(({ onChange }: any) => {
-      setTimeout(() => onChange(isInView), 1500);
-      return [anchorRef];
-    });
+    useInViewMock.mockImplementation(
+      ({ onChange }: { onChange: (inView: boolean) => void }) => {
+        setTimeout(() => onChange(isInView), 1500);
+        return [anchorRef];
+      }
+    );
 
     render(
       <InViewLoader
