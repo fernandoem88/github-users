@@ -10,6 +10,8 @@ interface Props {
   isLoading: boolean;
 }
 
+export const EMPTY_SEARCH_MESSAGE = "please enter some search text";
+
 export const UserSearchForm = ({
   onSubmit,
   errorMessage,
@@ -27,7 +29,7 @@ export const UserSearchForm = ({
     }
 
     if (!validation.data) {
-      alert("please enter some search text");
+      alert(EMPTY_SEARCH_MESSAGE);
       return;
     }
 
