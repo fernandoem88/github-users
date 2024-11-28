@@ -26,6 +26,11 @@ export const UserSearchForm = ({
       return;
     }
 
+    if (!validation.data) {
+      alert("please enter some search text");
+      return;
+    }
+
     onSubmit(validation.data);
   };
 
