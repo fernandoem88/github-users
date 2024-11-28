@@ -7,6 +7,7 @@ interface Props {
   loadMore?: () => void;
   isLoading?: boolean;
 }
+
 /** @description this component must execute the `loadMore` callback when it's in view */
 export const InViewLoader = ({
   hasMore,
@@ -14,12 +15,12 @@ export const InViewLoader = ({
   isLoading,
   error,
 }: Props) => {
-  const [anchor, isInView] = useInView({
+  const [anchor] = useInView({
     // rootMargin: "0px 0px -10px 0px",
     threshold: 0,
     onChange: (inView) => {
-      if (!inView) return;
       if (isLoading) return;
+      if (!inView) return;
       if (!hasMore) return;
 
       loadMore?.();
