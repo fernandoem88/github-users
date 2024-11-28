@@ -18,18 +18,26 @@ export const RepoCard = ({ repo }: Props) => {
   return (
     <Card elevation={0} component="article" sx={{ bgcolor: "grey.100" }}>
       <CardHeader
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "calc(100% - 60px) 1fr",
+        }}
         title={name}
         titleTypographyProps={{
           fontSize: 18,
           fontWeight: 600,
-          maxWidth: "calc(100% - 80px)",
+          maxWidth: 1,
           textOverflow: "ellipsis",
           overflow: "hidden",
           whiteSpace: "nowrap",
         }}
         action={
           !!stargazers_count && (
-            <Stack direction="row" alignItems="center">
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="flex-end"
+            >
               {stargazers_count}
               <StarIcon fontSize="small" />
             </Stack>
