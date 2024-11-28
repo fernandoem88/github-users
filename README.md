@@ -12,13 +12,20 @@ Follow these steps to run the project locally:
    npm install
    ```
 
-2. **Start the Development Server:**
+2. **Add Your Github Token Key**
+
+- go to [github.com](https://github.com) and create/copy a token key.
+- come back to the project and create a `.env.local` file at the root folder
+- write down your github token key in the _.en.local_ file like follows:
+- NEXT_PUBLIC_GITHUB_KEY=your-token-key-goes-here
+
+3. **Start the Development Server:**
 
    ```bash
    npm run dev
    ```
 
-3. **Open the Application:**  
+4. **Open the Application:**  
    Navigate to [http://localhost:3000](http://localhost:3000) in your browser to view the app.
 
 ![Preview](./screenshot.png)
