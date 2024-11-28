@@ -8,7 +8,7 @@ interface Props {
   isLoading?: boolean;
 }
 
-/** @description this component must execute the `loadMore` callback when it's in view */
+/** @description this component will trigger the `loadMore` callback when it appears in view */
 export const InViewLoader = ({
   hasMore,
   loadMore,
