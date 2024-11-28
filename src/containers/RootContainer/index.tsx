@@ -2,12 +2,13 @@
 
 import { Alert, Container, Stack } from "@mui/material";
 import { useState } from "react";
-import { useGetUsersList } from "../../../../libs/api/hooks/useGetUsersList";
-import { UserSearchForm } from "../../components/UserSearchForm";
-import { UserItemContainer } from "../UserItemContainer";
-import { InViewLoader } from "../../components/InViewLoader";
+import { useGetUsersList } from "@/libs/api/hooks/useGetUsersList";
+import { UserSearchForm } from "@/components/UserSearchForm";
+import { InViewLoader } from "@/components/InViewLoader";
 
-export const GithubUser = () => {
+import { UserItemContainer } from "../UserItemContainer";
+
+export const GithubUsersRootContainer = () => {
   const [search, setUsername] = useState("");
 
   const doGetUsersList = useGetUsersList({ q: search });

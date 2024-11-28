@@ -1,10 +1,10 @@
-import { GithubUser } from "../apps/GithubUsers/containers/RootContainer";
+import { GithubUsersRootContainer } from "../containers/RootContainer";
 
 export default function Home() {
   return (
     <div>
       <main>
-        <GithubUser />
+        <GithubUsersRootContainer />
       </main>
     </div>
   );

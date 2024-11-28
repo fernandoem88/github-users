@@ -6,9 +6,9 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import type { IGithubUser } from "../../../../libs/api/types";
+import type { IGithubUser } from "../../libs/api/types";
 import { useState } from "react";
-import { useGetUserRepos } from "../../../../libs/api/hooks/useGetUserRepos";
+import { useGetUserRepos } from "../../libs/api/hooks/useGetUserRepos";
 import { RepoCard } from "../../components/RepoCard";
 import { UserItemHeader } from "../../components/UserItemHeader";
 import { InViewPlaceholder } from "../../components/InViewPlaceholder";

@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import type { IGithubRepo } from "../../../../libs/api/types";
+import type { IGithubRepo } from "../../libs/api/types";
 
 interface Props {
   repo: IGithubRepo;
