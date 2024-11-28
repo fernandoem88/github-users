@@ -20,7 +20,7 @@ const useInViewMock = useInView as jest.Mock;
 describe("InViewLoader", () => {
   it("calls loadMore after 1.5 seconds when component is in view", async () => {
     const mockLoadMore = jest.fn();
-    const anchorRef = (_ref: HTMLDivElement) => {};
+    const anchorRef = () => {};
     const isInView = true;
 
     useInViewMock.mockImplementation(({ onChange }: any) => {

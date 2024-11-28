@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 interface Props {
   children: NonNullable<ReactNode>;
   sx?: SxProps;
-  component?: ElementType<any, keyof JSX.IntrinsicElements>;
+  component?: ElementType<Element, keyof JSX.IntrinsicElements>;
 }
 
 export const classNames = {
