@@ -1,11 +1,11 @@
 import { Box, SxProps } from "@mui/material";
-import { ElementType, ReactNode, useRef } from "react";
+import { type ReactNode, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 
 interface Props {
   children: NonNullable<ReactNode>;
   sx?: SxProps;
-  component?: ElementType<Element, keyof JSX.IntrinsicElements>;
+  component?: keyof JSX.IntrinsicElements;
 }
 
 export const classNames = {
