@@ -14,7 +14,7 @@ export const doGetUserRepos = async ({ username }: Params) => {
   const url = ENDPOINT.replace(":username", username);
 
   const response = await fetch(url, {
-    headers: await getDefaultHeaders(),
+    headers: getDefaultHeaders(),
     next: { tags: ["user-repos", `user-repos/${username}`] },
   });
 

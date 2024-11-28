@@ -7,6 +7,7 @@ import { UserSearchForm } from "@/components/UserSearchForm";
 import { InViewLoader } from "@/components/InViewLoader";
 
 import { UserItemContainer } from "../UserItemContainer";
+import { GENERIC_ERROR_MESSAGE } from "./constants";
 
 export const GithubUsersRootContainer = () => {
   const [search, setUsername] = useState("");
@@ -17,8 +18,8 @@ export const GithubUsersRootContainer = () => {
   const usersList = doGetUsersList.data?.pages.flatMap((data) => data.items);
 
   const isLoading = doGetUsersList.isLoading;
-
   const resultCaption = `${totalCount} results for ${search}`;
+  const hasError = !!doGetUsersList.error;
 
   return (
     <Container>
@@ -33,7 +34,7 @@ export const GithubUsersRootContainer = () => {
         <UserSearchForm
           isLoading={isLoading}
           onSubmit={setUsername}
-          errorMessage={doGetUsersList.error?.message}
+          errorMessage={hasError ? GENERIC_ERROR_MESSAGE : undefined}
         />
         {!!search && <Alert>{resultCaption}</Alert>}
         <Stack px={2} component="ul" gap="1px">
@@ -45,7 +46,7 @@ export const GithubUsersRootContainer = () => {
           hasMore={doGetUsersList.hasNextPage}
           isLoading={isLoading}
           loadMore={doGetUsersList.fetchNextPage}
-          error={!!doGetUsersList.error}
+          error={hasError}
         />
       </Stack>
     </Container>

@@ -26,7 +26,7 @@ export const doGetUsersList = async ({
   const url = `${ENDPOINT}?${search}`;
 
   const response = await fetch(url, {
-    headers: await getDefaultHeaders(),
+    headers: getDefaultHeaders(),
     next: { tags: ["users", "users-list"] },
   });
 
