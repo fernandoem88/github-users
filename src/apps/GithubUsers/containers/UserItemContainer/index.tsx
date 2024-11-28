@@ -2,7 +2,9 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Alert,
   Stack,
+  Typography,
 } from "@mui/material";
 import type { IGithubUser } from "../../../../libs/api/types";
 import { useState } from "react";
@@ -21,7 +23,10 @@ export const UserSearchItem = ({ user }: Props) => {
   const doGetRepos = useGetUserRepos({ username, enabled: isExpanded });
   const repos = doGetRepos.data ?? [];
 
-  const totalRepos = repos.length;
+  const totalRepos = user.public_repos ?? repos.length;
+
+  const isLoading = doGetRepos.isLoading;
+
   return (
     <Accordion
       expanded={isExpanded}
@@ -29,13 +34,25 @@ export const UserSearchItem = ({ user }: Props) => {
     >
       <AccordionSummary
         sx={{
-          bgcolor: isExpanded ? "#f6f6f6" : undefined,
+          bgcolor: isExpanded ? "grey.300" : undefined,
         }}
       >
-        <UserItemHeader username={username} totalRepos={totalRepos} />
+        <UserItemHeader
+          username={username}
+          totalRepos={totalRepos}
+          isExpanded={isExpanded}
+        />
       </AccordionSummary>
       <AccordionDetails>
-        <Stack gap={2} component="section">
+        <Stack gap={2} component="section" pt={1}>
+          {!totalRepos && isLoading && (
+            <Typography variant="body2" textAlign="center">
+              Loading...
+            </Typography>
+          )}
+          {!totalRepos && !isLoading && (
+            <Alert color="info">no repos found.</Alert>
+          )}
           {repos.map((repo) => (
             <RepoCard key={repo.id} repo={repo} />
           ))}

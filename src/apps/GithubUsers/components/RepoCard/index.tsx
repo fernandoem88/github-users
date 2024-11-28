@@ -16,7 +16,7 @@ interface Props {
 export const RepoCard = ({ repo }: Props) => {
   const { stargazers_count, name, description } = repo;
   return (
-    <Card component="article" sx={{ bgcolor: "#f6f6f6" }}>
+    <Card elevation={0} component="article" sx={{ bgcolor: "grey.100" }}>
       <CardHeader
         title={name}
         titleTypographyProps={{
@@ -36,7 +36,7 @@ export const RepoCard = ({ repo }: Props) => {
           )
         }
       />
-      <CardContent>
+      <CardContent sx={{ py: 0, my: 0 }}>
         <Typography variant="body2">{description}</Typography>
       </CardContent>
     </Card>
